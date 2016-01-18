@@ -1,0 +1,19 @@
+/*
+
+The settings.gradle file is where we tell Gradle what sub-projects to include
+in the multi-project build. We already have the :app project for the Android
+app, and we'll add :javaJokes
+
+Now jokesProvider is a sub-project, and if we run
+
+    $ ./gradlew projects
+
+We see that both app and jokesProvider are sub-projects.
+
+Finally, if we want to use code from javaJokes in our app project, we need to
+declare a project dependency. Let's head over the build.gradle file in the app
+directory.
+
+*/
+
+include ':app', ':jokesProvider'

@@ -1,0 +1,17 @@
+/*
+We're just making a standard Java project, following all the default
+conventions. That means our build.gradle is super simple:
+*/
+
+apply plugin: "java"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+
+sourceCompatibility = 1.7
