@@ -16,4 +16,4 @@ directory.
 
 */
 
-include ':app', ':jokesProvider'
+include ':app', ':jokesProvider', ':jokesandroidlib'

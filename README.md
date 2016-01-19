@@ -9,7 +9,7 @@ and Google Cloud Endpoints. The finished app will consist of four modules:
 
 
 # Used libraries
-   compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'

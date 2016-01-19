@@ -1,4 +1,5 @@
 package jubair.khan.jokes.app;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -26,15 +27,8 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.v(LOG_TAG,"onCreateView called");
-
+        Log.v(LOG_TAG, "onCreateView called");
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        /*TextView textView = (TextView) rootView.findViewById(R.id.instructions_text_view);
-        Joker myJoker = new Joker();
-        textView.setText(myJoker.getJoke());*/
-
-
 
         AdView mAdView = (AdView) rootView.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
@@ -44,8 +38,7 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
-
-        Log.v(LOG_TAG,"adRequest:"+adRequest);
+        Log.v(LOG_TAG, "adRequest:" + adRequest);
 
         return rootView;
     }
