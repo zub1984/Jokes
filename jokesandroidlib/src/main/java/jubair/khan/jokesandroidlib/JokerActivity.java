@@ -10,4 +10,5 @@ public class JokerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.joker_main);
     }
+
 }

@@ -6,4 +6,5 @@ package jubair.khan.jokes.app.utility;
 public class Constants {
 
     public static final String JOKE_MESSAGE_KEY = "JOKE_MESSAGE_KEY";
+    public  static final String GCE_IO_EXCEPTION = "GCE_IO_EXCEPTION";
 }

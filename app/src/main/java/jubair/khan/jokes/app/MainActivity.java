@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.jubair.jokes.Joker;
-
+import de.greenrobot.event.EventBus;
+import jubair.khan.jokesandroidlib.events.MessageEvent;
 import jubair.khan.jokes.app.utility.Constants;
 import jubair.khan.jokesandroidlib.JokerActivity;
 
@@ -19,10 +17,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /**Register to receive events*/
+        EventBus.getDefault().register(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
@@ -45,21 +48,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         if (null != view) {
-            Joker myJoker = new Joker();
-            Toast.makeText(this, "Pass joke to android library.", Toast.LENGTH_SHORT).show();
-            Log.v(LOG_TAG, "passing the jokes message to android library.");
-            launchLibraryActivity(myJoker.getJoke());
+            // call AsyncTask from MainActivity
+            new EndpointsAsyncTask(getApplicationContext()).execute();
         }
     }
 
-    /*
-    There we go! Now we can launch the activity from our android library, and it's
-    easy to reuse that activity between different apps!
-     */
 
-    public void launchLibraryActivity(String jokesMessage) {
+    /**
+     * EventBus uses this method to pass specified event to classes which is registered
+     */
+    public void onEvent(MessageEvent event) {
         Intent myIntent = new Intent(this, JokerActivity.class);
-        myIntent.putExtra(Constants.JOKE_MESSAGE_KEY, jokesMessage);
+        myIntent.putExtra(Constants.JOKE_MESSAGE_KEY, event.getMessage());
         startActivity(myIntent);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        /**
+         * You need to unregister EventBus while your activity destroying.
+         * */
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }
