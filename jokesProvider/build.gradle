@@ -5,6 +5,9 @@ conventions. That means our build.gradle is super simple:
 
 apply plugin: "java"
 
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
 repositories {
     jcenter()
 }
@@ -14,4 +17,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-sourceCompatibility = 1.7

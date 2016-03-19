@@ -17,6 +17,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+       /* free {
+            applicationId "jubair.khan.jokes.app.free"
+        }*/
+        paid {
+            applicationId "jubair.khan.jokes.app.paid"
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+
+    sourceSets {
+       // free.java.srcDir 'src/free/java'
+        paid.java.srcDir 'src/paid/java'
+    }
 }
 
 dependencies {
