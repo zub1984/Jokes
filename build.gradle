@@ -18,6 +18,33 @@ allprojects {
     }
 }
 
+/*
+Configure Test Task
+To tie it all together, create a Gradle task that:
+1.	Launches the GCE local development server
+2.	Runs all tests
+3.	Shuts the server down again
+*/
+
+task startService {
+    dependsOn ":gce:appengineRun"
+}
+
+task runConnectedTest {
+    dependsOn ":app:connectedAndroidTest"
+}
+
+task stopService {
+    dependsOn = ["startService", ":gce:appengineStop"]
+}
+
+runConnectedTest.mustRunAfter startService
+stopService.mustRunAfter runConnectedTest
+
+task runTests {
+    dependsOn = ["startService", "runConnectedTest", "stopService"]
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
