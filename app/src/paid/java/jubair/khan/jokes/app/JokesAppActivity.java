@@ -57,6 +57,7 @@ public class JokesAppActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view){
+        progressBar.setVisibility(View.VISIBLE);
         beginJoke();
     }
 

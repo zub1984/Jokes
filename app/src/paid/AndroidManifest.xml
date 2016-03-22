@@ -21,7 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="jubair.khan.jokesandroidlib.JokerActivity" />
+
+        <!-- Include the AdActivity configChanges and theme. -->
+        <activity
+            android:name="jubair.khan.jokesandroidlib.JokerActivity"
+            android:label="Joke Display"
+            android:parentActivityName=".JokesAppActivity" >
+        </activity>
 
     </application>
 
