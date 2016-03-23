@@ -1,8 +1,8 @@
 package jubair.khan.jokes.app;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
@@ -38,12 +38,12 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
         if (myApiService == null) {
-            Log.v("EndpointsAsyncTask", "doInBackground");
+            //Log.v("EndpointsAsyncTask", "doInBackground");
 
             //https://jokesteller-1199.appspot.com/_ah/api/
             //https://github.com/GoogleCloudPlatform/gradle-appengine-templates/tree/master/HelloEndpoints
 
-           /* Uri.Builder builder = new Uri.Builder();
+           Uri.Builder builder = new Uri.Builder();
            String projectId = mContext.getString(R.string.gce_project_id);
             builder.scheme("https")
                     .authority(projectId + ".appspot.com")
@@ -53,10 +53,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
             String myUrl = builder.build().toString();
 
             MyApi.Builder appBuilder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl(myUrl);*/
-
-            MyApi.Builder appBuilder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://jokesteller-1199.appspot.com/_ah/api/");
+                    .setRootUrl(myUrl);
 
             myApiService = appBuilder.build();
         }
@@ -64,7 +61,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
         try {
             return myApiService.getJokes().execute().getData();
         } catch (IOException e) {
-            Log.v("EndpointsAsyncTask", "Failed : " + e.getMessage());
+            //Log.v("EndpointsAsyncTask", "Failed : " + e.getMessage());
             return Constants.GCE_IO_EXCEPTION;
         }
     }
